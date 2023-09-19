@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <style>
+         table, th, td {
+         border: 1px solid black;
+         }
+      </style>
+   </head>
+<body>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Maths</th>
+      <th>Physics</th>
+      <th>Chemistry</th>
+    <th>Result</th>
+    <th>Delete Record</th>
+
+  </tr>
+  {% for i in data%}
+  <tr>
+    <td>{{i._id}}</td>
+    <td><a href="/student?id={{i._id}}">{{i.name | title}}</a></td>
+    <td>{{i.marks.maths}}</td>
+      <td>{{i.marks.physics}}</td>
+      <td>{{i.marks.chemistry}}</td>
+    <td>{% if i.marks.maths>=35 and i.marks.physics>=35 and i.marks.chemistry>=35 %}
+      {% if i.marks.maths==100 or i.marks.physics==100 or i.marks.chemistry==100 %}
+      <p style="color:green">Pass🤴🍾</p>
+      {% else %}
+    <p style="color:green">Pass😎</p>
+      {% endif %}
+    {% else %}
+      <p style="color:red">Fail 😱</p>
+      {% endif %}</td>
+    <td><a href="/del/{{i._id}}"><button>Delete</button></a></td>
+  </tr>
+  {% endfor %}
+</table>
+<br/>
+<br/>
+<br/>
+<a href="/"><button>Home</button></a>
+</body>
+</html>
